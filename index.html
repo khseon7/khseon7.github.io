@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Welcome to my website!</title>
+	<link type="text/css" rel="stylesheet" href="style.css">
+	<link href="https://fonts.googleapis.com/css?family=Noto+Sans|Roboto+Mono&display=swap" rel="stylesheet">
+</head>
+<body>
+	<div class="container">
+		<div class="intro">
+			<!-- you can replace with your own profile picture -->
+			<!-- or use random portrait image here: https://source.unsplash.com/100x100/?portrait -->
+			<div id="im">
+				<img class="profile_picture" src="images/cat.jpg" />
+			</div>
+			<h1>Hak Seon Kim</h1>
+			<h3>Studying AI program in Sejong University</h3>
+			<a class="comment"> </a>
+		</div>
+
+		<div class="about-grid">
+			<div class="i-am">
+				<h3>I am</h3>
+				<ul class="about-list">
+					<li>DataScience Student</li>
+					<li></li>
+				</ul>
+			</div>
+			<div class="i-like">
+				<h3>I like to</h3>
+				<ul class="about-list">
+					<li>Meet new people</li>
+					<li>Playing Soccer</li>
+					<li>Eat delicious food</li>
+				</ul>
+			</div>
+		</div>
+
+		<div class="projects-heading">
+			<h3>My Projects</h3>
+			<div class="projects-grid">
+				<!-- you can replace with your own projects images -->
+				<!-- or use random image here: https://source.unsplash.com/random/300x300/?img=1 -->
+				<div class="each_project">
+					<a href="https://github.com/khseon7/2024-2-Sejong-AF">
+						<img src="https://private-user-images.githubusercontent.com/110168316/381011417-eba01c04-2325-49bb-9778-e375ecf59cfa.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NDI1MTk2NjQsIm5iZiI6MTc0MjUxOTM2NCwicGF0aCI6Ii8xMTAxNjgzMTYvMzgxMDExNDE3LWViYTAxYzA0LTIzMjUtNDliYi05Nzc4LWUzNzVlY2Y1OWNmYS5wbmc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjUwMzIxJTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI1MDMyMVQwMTA5MjRaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT03YTM2YmI5YTA5ZTM4NzBmMDEyN2E2MzBlYjFmMmE2YjcwYjU1MDk5YzEyY2IyMzc4ZmRlNDU1Y2JiMzdiNjViJlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCJ9.JPqyiNXAsqm21ZA_kz4-GWIsuAE8Fuquad4xKzg5Ts4" class="project-image"/>
+					</a>
+					<p>학습나래</p>
+				</div>
+				<div class="each_project">
+					<a href="https://langchain-ai.github.io/langgraph/tutorials/introduction/">
+						<img class="project-image" src="images/chatbot.png"/>
+					</a>
+					<p>Chatbot</p>
+				</div>
+				<div class="each_project">
+					<img class="project-image" src="https://i.namu.wiki/i/XYSOQ9LJImPvLaQFz77yV6DhJy6TFHGdbqtAd42LcBd5Fx9ZAhK-CnxZtfQz5S_hzkFxGgxHWLH3-QmiIE-9Dg.webp"/>
+					<p>RAG</p>
+				</div>
+				<div class="each_project">
+					<img class="project-image" src="https://www.researchgate.net/publication/381404977/figure/fig1/AS:11431281251767340@1718339680284/Overview-of-LLM-based-AI-agent.png"/>
+					<p>LLM Agent</p>
+				</div>
+			</div>
+		</div>
+
+		<div class="links-and-contact">
+			<div class="links">
+				<h3>Links</h3>
+				<ul class="links-list">
+					<li>
+						<a href="https://github.com/khseon7">
+							<img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=GitHub&logoColor=white">
+						</a>
+					</li>
+					<li>
+						<a href="https://khseon7.tistory.com/">
+							<img src="https://img.shields.io/badge/Tistory-DD0700?style=for-the-badge&logo=Tistory&logoColor=white">
+						</a>
+					</li>
+					<li>
+						<a href="https://khseon7.tistory.com/">
+							<img src="https://img.shields.io/badge/Velog-20C997?style=for-the-badge&logo=Velog&logoColor=white">
+						</a>
+					</li>
+				</ul>
+			</div>
+
+			<div>
+				<form action="#">
+					<label for="email">
+						Email: <input type="email" id="email" placeholder="Enter your email" /> 
+					</label>
+					<label for="message">
+						Message: <textarea id="message">Input Message</textarea>
+					</label>
+					<input type="submit" class="submit-button-wrapper " valid="Send Message" />
+				</form>
+			</div>
+		</div>
+		<div class="map">
+			<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3164.807247417782!2d127.09996807555912!3d37.512464072052616!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357ca50a915f665b%3A0xabeb10cd5efdfce2!2z66Gv642w7JuU65Oc7YOA7JuM!5e0!3m2!1sko!2skr!4v1742541501117!5m2!1sko!2skr" width="800" height="600" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+		</div>
+	</div>
+</body>
+</html>

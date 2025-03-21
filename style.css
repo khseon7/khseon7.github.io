@@ -1,0 +1,156 @@
+body {
+	font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;;
+	background: #183d45;
+	color: #71afed;
+}
+
+h1, h2, h3, h4 {
+	font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;;
+    color:rgb(0, 251, 255)
+}
+
+.container {
+	max-width: 840px;
+	margin: 0 auto;
+}
+
+.container > div {
+	margin: 20px auto;
+}
+
+.profile_picture{
+    width: 25%;
+    height: 200px;
+    border-radius:50%;
+}
+
+/* .profile_picture:hover{
+    width: 100%;
+    border-radius: 2px;
+} */
+
+.intro {
+    text-align: center;
+}
+
+.intro #im:hover{
+    background-color: rgb(5,6,31);
+    border-radius: 20px;
+}
+
+.about-grid {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    background-color:rgba(127,255,212,0.2);
+}
+
+.i-am, .i-like {
+    text-align: center;
+    text-decoration: none
+}
+
+.about-list {
+    list-style: none;
+    padding: 0;
+}
+
+.projects-heading {
+    text-align: center; 
+}
+
+.projects-grid {
+    display: grid;
+    grid-template-columns: 50% 50%;
+}
+
+.project-image {
+    justify-self: center;
+    padding: 4%;
+    width: 350px;
+    max-width:100%;
+}
+
+.project-image:hover {
+    animation: floating 1.5s ease-in-out infinite;
+}
+
+@keyframes floating {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); } /* 위로 10px 이동 */
+    100% { transform: translateY(0px); }
+}
+
+.links-and-contact {
+    display: grid;
+    grid-template-columns: 30% 70%;
+}
+
+.links {
+    justify-self: center;
+}
+
+.links-list {
+    list-style: none;
+    padding: 0;
+}
+
+form input, textarea {
+	padding: 5px;
+	border-radius: 5px;
+	width: 240px;
+}
+
+form {
+	width: 250px;
+	margin: 0 auto;
+}
+
+form input[type="submit"] {
+	width: 250px;
+}
+
+.submit-button-wrapper {
+	margin: 20px 0;
+    background-color: rgb(111, 190, 255);
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    color: black;
+}
+
+.map{
+    text-align: center;
+}
+
+.each_project{
+    background-color:rgba(222,222,222,0.3);
+    font-size:20px;
+    margin:10px;
+}
+
+.comment {
+    position: relative;
+    display: inline-block;
+    padding: 10px;
+    font-weight:bold;
+}
+.comment::before {
+    content: "The code just needs to run.";
+    position: relative;
+    left: 0;
+    top: 0;
+    transition: opacity 0.5s ease-in-out;
+    opacity: 1;
+}
+.comment::after {
+    content: "Code's running smooth, let's have a drink~";
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+.comment:hover::before {
+    opacity: 0;
+}
+.comment:hover::after {
+    opacity: 1;
+}
