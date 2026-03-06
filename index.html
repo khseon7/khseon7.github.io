@@ -65,6 +65,7 @@
                         <div class="flex flex-wrap gap-2">
                             <span class="tag">Python</span>
                             <span class="tag">Java/Kotlin</span>
+                            <span class="tag">Ollama</span>
                         </div>
                     </div>
                     <div>
@@ -119,10 +120,26 @@
                 <span class="result-badge">데이터 보안 준수</span>
             </div>
             <p class="text-slate-600 mb-4">외부 API 호출 없이 사내 문서만으로 답변 생성 가능한 보안 요구사항 충족</p>
+            <div>
+                <h4 class="font-bold mb-2">핵심 구현 내용</h4>
+                <ul class="list-disc ml-5 text-sm space-y-2 text-slate-600">
+                <li><strong>에어갭(Air-gapped) 추론 환경:</strong> 외부망 차단 환경을 고려하여 Hugging Face 모델 및 의존성 패키지를 로컬로 구성, 독립 실행 가능한 인프라 구축</li>
+                <li><strong>인프라 규격화 및 컨테이너화:</strong> Ubuntu 기반 Docker 이미지로 LLM 환경을 패키징하여 배포 재현성 및 운영 확장성 확보</li>
+                <li><strong>자원 최적화 및 안정성:</strong> 컨테이너 내 GPU/CPU 자원 할당 및 라이브러리 버전 고정으로 폐쇄망 내 모델 동작 안정성 극대화</li>
+                <li><strong>온프레미스 RAG 파이프라인:</strong> 내부 지식베이스(Vector DB) 연동을 통한 사내 문서 기반 질의응답 시스템 설계 및 구현</li>
+                <li><strong>데이터 주권 및 보안 강화:</strong> 외부 API 호출을 100% 차단하고 내부 자원만 활용하는 보안 특화 LLM 활용 체계 수립</li>
+            </div>
+            
             <div class="bg-slate-900 text-slate-200 p-6 rounded-lg text-sm">
                 <h4 class="font-bold text-blue-400 mb-2 underline">Strategy (TO-BE)</h4>
                 <p>외부 네트워크가 완전 분리된 환경을 위해 <strong>Hugging Face 모델 파일 사전 다운로드 및 의존성 패키지 로컬 구성</strong>으로 독립 실행 가능한 추론 인프라 설계</p>
                 <p class="mt-2 text-green-400 font-semibold">Result: 배포 비용 절감 및 유지보수 효율성 향상</p>
+            </div>
+            <div class="bg-slate-50 p-4 rounded-lg">
+                <h4 class="font-bold mb-2 text-blue-600 text-sm">Skills Used</h4>
+                <div class="flex flex-wrap gap-2">
+                    <span class="tag">LangGraph</span><span class="tag">Hugging Face</span><span class="tag">Docker Compose</span><span class="tag">RAG</span>
+                </div>
             </div>
         </div>
     </div>
@@ -139,7 +156,7 @@
                 </div>
                 <div class="border p-4 rounded-lg bg-green-50">
                     <h4 class="font-bold text-green-700 mb-1 text-sm">TO-BE (Solution) </h4>
-                    <ul class="text-xs text-slate-700 space-y-1">
+                    <ul class="text-xs text-slate-600 space-y-1">
                         <li>- 공통 <strong>ThreadPoolExecutor</strong> 구현으로 최대 가동량 제어 </li>
                         <li>- LinkedBlockingQueue 도입으로 <strong>Back-pressure</strong> 조절 </li>
                         <li>- SimpleJdbcInsert 객체 재사용으로 GC 부하 감소 </li>
@@ -157,10 +174,10 @@
                     <p class="text-sm text-slate-600">특정 시점부터 Heap OutOfMemoryError(OOM) 문제가 발생하여 서버가 다운되는 현상이 발생</p>
                 </div>
                 <div class="border p-4 rounded-lg bg-blue-50">
-                    <h4 class="font-bold text-red-700 mb-1 text-sm">What I Did (Approach)</h4>
+                    <h4 class="font-bold text-blue-700 mb-1 text-sm">What I Did (Approach)</h4>
                     <p class="text-sm text-slate-600">- 시스템 로그상 원인 파악이 제대로 진행되지 않아 OOM이 발생했을 때, <strong>Heap dump</strong>를 사용하여 메모리에서 어떠한 문제가 있는지 파악</p>
-                    <p class="text-sm text-slate-600">- Heap Dump 결과에서도 할당한 메모리보다 훨씬 작은 메모리만 사용하는 것으로 보아 다른부분에서 문제가 발생한 것으로 예상되어 의심이되는 코드 및 GC logs 추가 확인</p>
-                    <p class="text-sm text-slate-600">- 확인 결과 UNION ALL을 통한 대규모 INSERT가 JNI 호출을 통해 실행되면서 GCLocker가 작동이 되면서 강제로 메모리 회수가 지연되며 힙 공간이 고갈되어 OOM이 문제가 된것을 확인</p>
+                    <p class="text-sm text-slate-600">- Heap Dump 결과에서도 할당한 메모리보다 훨씬 작은 메모리만 사용하는 것으로 보아 다른부분에서 문제가 발생한 것으로 예상되어 <strong>GC logs</strong> 추가 확인</p>
+                    <p class="text-sm text-slate-600">- 확인 결과 UNION ALL을 통한 <strong>대규모 INSERT가 JNI 호출을 통해 실행</strong>되면서 GCLocker가 작동이 되면서 강제로 메모리 회수가 지연되며 이를 시스템상 OOM으로 에러가 뜬것으로 확인</p>
                 </div>
                 <div class="border p-4 rounded-lg bg-green-50">
                     <h4 class="font-bold text-green-700 mb-1 text-sm">TO-BE (Solution) </h4>
@@ -172,12 +189,9 @@
                 </div>
             </div>
             <p class="mt-4 text-center font-bold text-blue-600">Result: OOM 장애 발생 건수 0 달성 </p>
-        </div>
-            
-            
+        </div>  
         </div>
     </div>
-
     <div class="page-container p-12">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
             <section>
@@ -219,6 +233,7 @@
 
 </body>
 </html>
+
 
 
 
