@@ -47,7 +47,7 @@
                     <div>
                         <h3 class="font-bold mb-3 text-slate-800">Business</h3>
                         <div class="flex flex-wrap gap-2">
-                            <span class="tag">JIRA</span>
+                            <span class="tag">Jira</span>
                             <span class="tag">Notion</span>
                             <span class="tag">Slack</span>
                         </div>
@@ -151,15 +151,30 @@
 
         <div>
             <h3 class="text-xl font-bold mb-4">2. JVM GCLocker 활성화로 인한 GC 불가 상태 해결 </h3>
-            <div class="trouble-box">
-                <p class="mb-4"><span class="text-red-400 font-bold">Problem:</span> UNION ALL을 통한 대규모 INSERT가 JNI 호출을 통해 실행되면서 GCLocker가 작동, 메모리 회수가 강제로 지연되어 힙 공간 고갈 </p>
-                <div class="bg-slate-800 p-4 rounded border border-slate-700">
-                    <h4 class="text-blue-400 font-bold mb-2">Solution </h4>
-                    <p class="text-sm">- 단일 대형 쿼리를 청크 단위로 세분화 </p>
-                    <p class="text-sm">- <strong>batchUpdate()</strong>를 통해 JNI 점유 시간을 최소화하여 GC가 개입할 수 있는 윈도우 확보 </p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="border p-4 rounded-lg bg-red-50">
+                    <h4 class="font-bold text-red-700 mb-1 text-sm">AS-IS (Problem)</h4>
+                    <p class="text-sm text-slate-600">특정 시점부터 Heap OutOfMemoryError(OOM) 문제가 발생하여 서버가 다운되는 현상이 발생</p>
                 </div>
-                <p class="mt-4 text-green-400 font-bold">Result: GC 지연 현상 완전 해소 및 장애 발생률 0% 유지 </p>
+                <div class="border p-4 rounded-lg bg-blue-50">
+                    <h4 class="font-bold text-red-700 mb-1 text-sm">What I Did (Approach)</h4>
+                    <p class="text-sm text-slate-600">- 시스템 로그상 원인 파악이 제대로 진행되지 않아 OOM이 발생했을 때, <strong>Heap dump</strong>를 사용하여 메모리에서 어떠한 문제가 있는지 파악</p>
+                    <p class="text-sm text-slate-600">- Heap Dump 결과에서도 할당한 메모리보다 훨씬 작은 메모리만 사용하는 것으로 보아 다른부분에서 문제가 발생한 것으로 예상되어 의심이되는 코드 및 GC logs 추가 확인</p>
+                    <p class="text-sm text-slate-600">- 확인 결과 UNION ALL을 통한 대규모 INSERT가 JNI 호출을 통해 실행되면서 GCLocker가 작동이 되면서 강제로 메모리 회수가 지연되며 힙 공간이 고갈되어 OOM이 문제가 된것을 확인</p>
+                </div>
+                <div class="border p-4 rounded-lg bg-green-50">
+                    <h4 class="font-bold text-green-700 mb-1 text-sm">TO-BE (Solution) </h4>
+                    <ul class="text-xs text-slate-700 space-y-1">
+                        <li>- <strong>Bulk Insert 전략 수정:</strong> UNION ALL 방식 대신 파티셔닝된 Batch Insert 도입</li>
+                        <li>- <strong>JNI 점유 시간 최소화:</strong> DB 드라이버 설정 및 쿼리 최적화로 Critical Section 체류 시간 단축</li>
+                        <li>- <strong>JVM 파라미터 튜닝:</strong> GCLocker 발생 시 대응을 위한 대기 스레드 정책 검토</li>
+                    </ul>
+                </div>
             </div>
+            <p class="mt-4 text-center font-bold text-blue-600">Result: OOM 장애 발생 건수 0 달성 </p>
+        </div>
+            
+            
         </div>
     </div>
 
@@ -204,6 +219,7 @@
 
 </body>
 </html>
+
 
 
 
