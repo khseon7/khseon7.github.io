@@ -94,22 +94,20 @@
             </div>
             <p class="text-slate-600 mb-4">기업 내부 보안 정책으로 인해 외부 인터넷망이 완전 차단된 환경에서 Claude VLM 기능을 활용할 수 있는 인프라 구축</p>
             
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div>
-                    <h4 class="font-bold mb-2">핵심 구현 내용</h4>
-                    <ul class="list-disc ml-5 text-sm space-y-2 text-slate-600">
-                        <li><strong>VPC Endpoint:</strong> 공용 인터넷을 거치지 않는 AWS 내부 백본망 기반 통신으로 트래픽 탈취 위험 차단 </li>
-                        <li><strong>화이트리스트 보안:</strong> IAM Role 및 Endpoint Policy 연동으로 특정 컨테이너만 자원 접근 허용 </li>
-                        <li><strong>인프라 규격화:</strong> Docker Compose로 에이전트 환경을 규격화하여 재현성 확보 </li>
-                        <li><strong>IP 보안:</strong> Load Balancer 연동을 통한 내부 리소스 IP 노출 방지 및 접근 제어 </li>
-                        <li><strong>로그 자동 적재:</strong> EC2 에이전트 활동 종료 시 동작 로그를 S3에 자동 저장하여 전 과정 추적 체계 구축 </li>
-                    </ul>
-                </div>
-                <div class="bg-slate-50 p-4 rounded-lg">
-                    <h4 class="font-bold mb-2 text-blue-600 text-sm">Skills Used</h4>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="tag">AWS Bedrock</span><span class="tag">VPC Endpoint</span><span class="tag">Claude 4.5</span><span class="tag">Load Balancer</span><span class="tag">S3</span><span class="tag">Docker-compose</span>
-                    </div>
+            <div>
+                <h4 class="font-bold mb-2">핵심 구현 내용</h4>
+                <ul class="list-disc ml-5 text-sm space-y-2 text-slate-600">
+                    <li><strong>VPC Endpoint:</strong> 공용 인터넷을 거치지 않는 AWS 내부 백본망 기반 통신으로 트래픽 탈취 위험 차단 </li>
+                    <li><strong>화이트리스트 보안:</strong> IAM Role 및 Endpoint Policy 연동으로 특정 컨테이너만 자원 접근 허용 </li>
+                    <li><strong>인프라 규격화:</strong> Docker Compose로 에이전트 환경을 규격화하여 재현성 확보 </li>
+                    <li><strong>IP 보안:</strong> Load Balancer 연동을 통한 내부 리소스 IP 노출 방지 및 접근 제어 </li>
+                    <li><strong>로그 자동 적재:</strong> EC2 에이전트 활동 종료 시 동작 로그를 S3에 자동 저장하여 전 과정 추적 체계 구축 </li>
+                </ul>
+            </div>
+            <div class="bg-slate-50 p-4 rounded-lg">
+                <h4 class="font-bold mb-2 text-blue-600 text-sm">Skills Used</h4>
+                <div class="flex flex-wrap gap-2">
+                    <span class="tag">AWS Bedrock</span><span class="tag">VPC Endpoint</span><span class="tag">Claude 4.5</span><span class="tag">Load Balancer</span><span class="tag">S3</span><span class="tag">Docker-compose</span>
                 </div>
             </div>
         </div>
@@ -143,44 +141,40 @@
 
         <div class="mb-12">
             <h3 class="text-xl font-bold mb-4">1. 배치 스케줄러 스레드 폭증 OOM 대응</h3>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div class="border p-4 rounded-lg bg-red-50">
-                    <h4 class="font-bold text-red-700 mb-1 text-sm">AS-IS (Problem)</h4>
-                    <p class="text-sm text-slate-600">작업마다 스레드를 무분별하게 새로 생성하여 <strong>스레드 10,000개 폭증</strong> 및 OutOfMemoryError 발생</p>
-                </div>
-                <div class="border p-4 rounded-lg bg-green-50">
-                    <h4 class="font-bold text-green-700 mb-1 text-sm">TO-BE (Solution) </h4>
-                    <ul class="text-xs text-slate-600 space-y-1">
-                        <li>- 공통 <strong>ThreadPoolExecutor</strong> 구현으로 최대 가동량 제어 </li>
-                        <li>- LinkedBlockingQueue 도입으로 <strong>Back-pressure</strong> 조절 </li>
-                        <li>- SimpleJdbcInsert 객체 재사용으로 GC 부하 감소 </li>
-                    </ul>
-                </div>
+            <div class="border p-4 rounded-lg bg-red-50">
+                <h4 class="font-bold text-red-700 mb-1 text-sm">AS-IS (Problem)</h4>
+                <p class="text-sm text-slate-600">작업마다 스레드를 무분별하게 새로 생성하여 <strong>스레드 10,000개 폭증</strong> 및 OutOfMemoryError 발생</p>
+            </div>
+            <div class="border p-4 rounded-lg bg-green-50">
+                <h4 class="font-bold text-green-700 mb-1 text-sm">TO-BE (Solution) </h4>
+                <ul class="text-xs text-slate-600 space-y-1">
+                    <li>- 공통 <strong>ThreadPoolExecutor</strong> 구현으로 최대 가동량 제어 </li>
+                    <li>- LinkedBlockingQueue 도입으로 <strong>Back-pressure</strong> 조절 </li>
+                    <li>- SimpleJdbcInsert 객체 재사용으로 GC 부하 감소 </li>
+                </ul>
             </div>
             <p class="mt-4 text-center font-bold text-blue-600">Result: OOM 장애 발생 건수 0 달성 </p>
         </div>
 
         <div>
             <h3 class="text-xl font-bold mb-4">2. JVM GCLocker 활성화로 인한 GC 불가 상태 해결 </h3>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div class="border p-4 rounded-lg bg-red-50">
-                    <h4 class="font-bold text-red-700 mb-1 text-sm">AS-IS (Problem)</h4>
-                    <p class="text-sm text-slate-600">특정 시점부터 Heap OutOfMemoryError(OOM) 문제가 발생하여 서버가 다운되는 현상이 발생</p>
-                </div>
-                <div class="border p-4 rounded-lg bg-blue-50">
-                    <h4 class="font-bold text-blue-700 mb-1 text-sm">What I Did (Approach)</h4>
-                    <p class="text-sm text-slate-600">- 시스템 로그상 원인 파악이 제대로 진행되지 않아 OOM이 발생했을 때, <strong>Heap dump</strong>를 사용하여 메모리에서 어떠한 문제가 있는지 파악</p>
-                    <p class="text-sm text-slate-600">- Heap Dump 결과에서도 할당한 메모리보다 훨씬 작은 메모리만 사용하는 것으로 보아 다른부분에서 문제가 발생한 것으로 예상되어 <strong>GC logs</strong> 추가 확인</p>
-                    <p class="text-sm text-slate-600">- 확인 결과 UNION ALL을 통한 <strong>대규모 INSERT가 JNI 호출을 통해 실행</strong>되면서 GCLocker가 작동이 되면서 강제로 메모리 회수가 지연되며 이를 시스템상 OOM으로 에러가 뜬것으로 확인</p>
-                </div>
-                <div class="border p-4 rounded-lg bg-green-50">
-                    <h4 class="font-bold text-green-700 mb-1 text-sm">TO-BE (Solution) </h4>
-                    <ul class="text-xs text-slate-700 space-y-1">
-                        <li>- <strong>Bulk Insert 전략 수정:</strong> UNION ALL 방식 대신 파티셔닝된 Batch Insert 도입</li>
-                        <li>- <strong>JNI 점유 시간 최소화:</strong> DB 드라이버 설정 및 쿼리 최적화로 Critical Section 체류 시간 단축</li>
-                        <li>- <strong>JVM 파라미터 튜닝:</strong> GCLocker 발생 시 대응을 위한 대기 스레드 정책 검토</li>
-                    </ul>
-                </div>
+            <div class="border p-4 rounded-lg bg-red-50">
+                <h4 class="font-bold text-red-700 mb-1 text-sm">AS-IS (Problem)</h4>
+                <p class="text-sm text-slate-600">특정 시점부터 Heap OutOfMemoryError(OOM) 문제가 발생하여 서버가 다운되는 현상이 발생</p>
+            </div>
+            <div class="border p-4 rounded-lg bg-blue-50">
+                <h4 class="font-bold text-blue-700 mb-1 text-sm">What I Did (Approach)</h4>
+                <p class="text-sm text-slate-600">- 시스템 로그상 원인 파악이 제대로 진행되지 않아 OOM이 발생했을 때, <strong>Heap dump</strong>를 사용하여 메모리에서 어떠한 문제가 있는지 파악</p>
+                <p class="text-sm text-slate-600">- Heap Dump 결과에서도 할당한 메모리보다 훨씬 작은 메모리만 사용하는 것으로 보아 다른부분에서 문제가 발생한 것으로 예상되어 <strong>GC logs</strong> 추가 확인</p>
+                <p class="text-sm text-slate-600">- 확인 결과 UNION ALL을 통한 <strong>대규모 INSERT가 JNI 호출을 통해 실행</strong>되면서 GCLocker가 작동이 되면서 강제로 메모리 회수가 지연되며 이를 시스템상 OOM으로 에러가 뜬것으로 확인</p>
+            </div>
+            <div class="border p-4 rounded-lg bg-green-50">
+                <h4 class="font-bold text-green-700 mb-1 text-sm">TO-BE (Solution) </h4>
+                <ul class="text-xs text-slate-700 space-y-1">
+                    <li>- <strong>Bulk Insert 전략 수정:</strong> UNION ALL 방식 대신 파티셔닝된 Batch Insert 도입</li>
+                    <li>- <strong>JNI 점유 시간 최소화:</strong> DB 드라이버 설정 및 쿼리 최적화로 Critical Section 체류 시간 단축</li>
+                    <li>- <strong>JVM 파라미터 튜닝:</strong> GCLocker 발생 시 대응을 위한 대기 스레드 정책 검토</li>
+                </ul>
             </div>
             <p class="mt-4 text-center font-bold text-blue-600">Result: OOM 장애 발생 건수 0 달성 </p>
         </div>  
@@ -227,6 +221,7 @@
 
 </body>
 </html>
+
 
 
 
