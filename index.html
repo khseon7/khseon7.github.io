@@ -134,6 +134,52 @@
                 </div>
             </div>
         </div>
+
+        <div class="mt-12">
+            <div class="flex justify-between items-start mb-4">
+                <h3 class="text-2xl font-bold">고객사 Open API 연동을 위한 MCP 기반 서버 구축</h3>
+                <span class="result-badge">사용성 및 배포 혁신</span>
+            </div>
+            <p class="text-slate-600 mb-4">비개발자도 자연어로 고객사 Open API를 호출할 수 있도록 Model Context Protocol(MCP) 기반의 Tool 인터페이스 및 독립 실행형 배포 체계 구축</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                <div class="bg-red-50 p-4 rounded-lg border-l-4 border-red-400">
+                    <h4 class="text-red-700 font-bold mb-2 text-sm">As-Is (기존 한계)</h4>
+                    <ul class="list-disc ml-5 text-xs text-red-600 space-y-1">
+                        <li>API 활용을 위한 별도의 Python 개발 환경 필수</li>
+                        <li>LLM과의 직접 연동 구조 부재로 매번 코드 작성 필요</li>
+                        <li>환경 의존성 문제로 비개발자의 접근성 저하</li>
+                    </ul>
+                </div>
+                <div class="bg-green-50 p-4 rounded-lg border-l-4 border-green-400">
+                    <h4 class="text-green-700 font-bold mb-2 text-sm">To-Be (개선 성과)</h4>
+                    <ul class="list-disc ml-5 text-xs text-green-600 space-y-1">
+                        <li>자연어 기반 API 호출이 가능한 LLM Tool 인터페이스 제공</li>
+                        <li>설치 없이 실행 가능한 Standalone 바이너리 배포</li>
+                        <li>CI/CD 자동화로 버전 관리 및 배포 편의성 극대화</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div>
+                <h4 class="font-bold mb-2">핵심 구현 내용</h4>
+                
+                <ul class="list-disc ml-5 text-sm space-y-2 text-slate-600">
+                    <li><strong>MCP 서버 추상화:</strong> 복잡한 Open API 규격을 LLM이 이해할 수 있는 MCP 기반 Tool 형태로 추상화하여 프롬프트 기반 연동 실현</li>
+                    <li><strong>Standalone 패키징:</strong> PyInstaller를 활용해 Python 런타임이 없는 환경에서도 동작하는 독립 실행 파일(.exe/.app) 형태의 배포 구조 설계</li>
+                    <li><strong>환경 의존성 제거:</strong> 사용자 PC의 Python 버전 충돌 문제를 원천 차단하여 클라이언트 측 배포 허들 최소화</li>
+                    <li><strong>CI/CD 파이프라인:</strong> GitHub Actions를 통한 자동 빌드 및 배포 자동화, 버전별 아티팩트 관리 체계 구축</li>
+                    <li><strong>배포 가이드라인 수립:</strong> 기업 고객의 다양한 인프라 환경을 고려한 단계별 표준 배포 가이드라인 제작</li>
+                </ul>
+            </div>
+            
+            <div class="bg-slate-50 p-4 rounded-lg mt-4">
+                <h4 class="font-bold mb-2 text-blue-600 text-sm">Skills Used</h4>
+                <div class="flex flex-wrap gap-2">
+                    <span class="tag">MCP (Model Context Protocol)</span><span class="tag">Python</span><span class="tag">PyInstaller</span><span class="tag">GitHub Actions</span><span class="tag">Open API</span>
+                </div>
+            </div>
+        </div>
     </div>
 
     <div class="page-container p-12">
@@ -221,6 +267,7 @@
 
 </body>
 </html>
+
 
 
 
