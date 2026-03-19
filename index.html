@@ -42,7 +42,7 @@
                         기술적 근거를 바탕으로 시스템의 빈틈을 메워나가는 DevOps 엔지니어로 성장하고 있습니다.
                     </p>
                 </div>
-                <div class="mt-6 flex gap-4">
+                <div class="grid grid-cols-1 mt-6 flex gap-4">
                     <div class="bg-blue-50 border-l-4 border-blue-500 p-4 flex-1">
                         <p class="text-blue-700 font-bold">✓ 배치 시스템 장애 발생률 0% 달성 (JVM 최적화)</p>
                     </div>
@@ -100,7 +100,7 @@
                         <p class="text-slate-600 mb-6 leading-relaxed">
                             외부 인터넷이 차단된 폐쇄망 환경에서 <strong>Amazon Bedrock(Claude)</strong>을 안전하게 활용하고, 에이전트의 실행 상태를 영구적으로 관리할 수 있는 <strong>Stateless 클라우드 인프라</strong>를 구축했습니다.
                         </p>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-6">
+                        <div class="grid grid-cols-1 gap-8 mb-6">
                             <div>
                                 <h4 class="font-bold mb-3 text-slate-700">핵심 구현 내용</h4>
                                 <ul class="list-disc ml-5 text-sm space-y-3 text-slate-600">
@@ -111,7 +111,7 @@
                                 </ul>
                             </div>
                             <div class="bg-slate-100 rounded-lg flex flex-col items-center justify-center p-4 border border-slate-200">
-                                <img src="images/aws_project_architecture.png" alt="AWS Architecture Diagram" class="max-w-full h-auto rounded shadow-sm" width="50%">
+                                <img src="images/aws_project_architecture.png" alt="AWS Architecture Diagram" class="max-w-full h-auto rounded shadow-sm" width="40%">
                                 <p class="text-slate-500 text-xs mt-3 italic text-center">
                                     * VPC Endpoint를 활용한 폐쇄망 보안 아키텍처
                                 </p>
@@ -139,7 +139,7 @@
                     <p class="text-slate-600 mb-6 leading-relaxed">
                         사용자 환경마다 다른 Python 런타임 의존성 문제를 해결하고, 비개발자도 자연어로 Open API를 호출할 수 있도록 <strong>단일 바이너리 패키징 및 자동 빌드 파이프라인</strong>을 구축했습니다.
                     </p>
-                    <div class="grid grid-cols-2 md:grid-cols-2 gap-6 mb-6">
+                    <div class="grid grid-cols-1 gap-6 mb-6">
                         <div class="bg-red-50 p-4 rounded-lg border-l-4 border-red-400">
                             <h4 class="text-red-700 font-bold mb-2 text-sm">Challenge (Problem)</h4>
                             <ul class="list-disc ml-5 text-xs text-red-600 space-y-1">
@@ -186,7 +186,7 @@
                         <h3 class="text-xl font-bold">1. JNI 호출에 따른 GCLocker 활성화 및 GC 불가 상태 해결</h3>
                         <span class="bg-red-100 text-red-700 text-xs px-2 py-1 rounded">Critical Path</span>
                     </div>
-                    <div class="grid grid-cols-2 md:grid-cols-2 gap-6 mb-4">
+                    <div class="grid grid-cols-1 gap-6 mb-4">
                         <div class="border p-5 rounded-lg bg-red-50">
                             <h4 class="font-bold text-red-700 mb-2 text-sm flex items-center">
                                 <span class="mr-2">⚠️</span> AS-IS (Problem)
@@ -210,7 +210,7 @@
                         <h4 class="font-bold text-green-700 mb-2 text-sm flex items-center">
                             <span class="mr-2">✅</span> TO-BE (Solution)
                         </h4>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="grid grid-cols-1 gap-4">
                             <ul class="text-xs text-slate-700 space-y-2">
                                 <li>- <strong>전략 수정:</strong> UNION ALL 방식 대신 파티셔닝된 <strong>Batch Insert</strong> 도입으로 JNI 점유 시간 단축</li>
                                 <li>- <strong>리소스 최적화:</strong> DB 드라이버 설정 및 쿼리 튜닝으로 Critical Section 체류 최소화</li>
@@ -228,7 +228,7 @@
                         <h3 class="text-xl font-bold">2. 배치 스케줄러 스레드 폭증 및 리소스 경합 최적화</h3>
                         <span class="bg-blue-100 text-blue-700 text-xs px-2 py-1 rounded">Optimization</span>
                     </div>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-4">
+                    <div class="grid grid-cols-1 gap-6 mb-4">
                         <div class="border p-5 rounded-lg bg-red-50">
                             <h4 class="font-bold text-red-700 mb-2 text-sm">⚠️ AS-IS</h4>
                             <p class="text-sm text-slate-700">
