@@ -9,17 +9,17 @@
     <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         body { font-family: 'Pretendard', sans-serif; background-color: #f3f4f6; color: #1f2937; }
-        /* 페이지 컨테이너: A4 비율 유지를 위해 min-height 설정 */
-        .page-container { 
-            max-width: 900px; 
+        .pdf-page { 
+            width: 210mm; 
+            min-height: 297mm; 
+            padding: 20mm; 
             margin: 2rem auto; 
             background: white; 
             box-shadow: 0 10px 25px -5px rgba(0,0,0,0.1); 
             border-radius: 8px; 
-            overflow: hidden; 
-            min-height: 1150px; /* A4 비율 대응 */
-            display: flex;
-            flex-direction: column;
+            position: relative;
+            box-sizing: border-box;
+            page-break-after: always;
         }
         .section-header { border-left: 4px solid #3b82f6; padding-left: 1rem; margin-bottom: 1.5rem; font-size: 1.25rem; font-weight: 700; color: #111827; }
         .tag { background: #eff6ff; color: #1d4ed8; padding: 2px 10px; border-radius: 4px; font-size: 0.8rem; font-weight: 600; }
@@ -27,25 +27,25 @@
         
         @media print {
             body { background: none; }
-            .page-container { margin: 0; box-shadow: none; border-radius: 0; page-break-after: always; }
+            .pdf-page { margin: 0; box-shadow: none; border-radius: 0; }
             .no-print { display: none; }
         }
     </style>
 </head>
 <body>
-    <div class="max-w-[900px] mx-auto flex justify-end mt-8 mb-2 no-print">
-        <button onclick="downloadPDF()" class="bg-slate-700 hover:bg-slate-800 text-white px-4 py-2 rounded text-sm font-semibold shadow-sm transition-all flex items-center gap-2">
+    <div class="max-w-[900px] mx-auto flex justify-end mt-4 mb-2 no-print">
+        <button onclick="downloadPDF()" class="bg-slate-700 hover:bg-slate-800 text-white px-4 py-2 rounded text-sm font-semibold shadow-sm transition-all flex items-center gap-1.5">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
-            <span>전체 포트폴리오 PDF 다운로드</span>
+            <span>PDF 다운로드 (3페이지)</span>
         </button>
     </div>
 
     <div id="pdf-content">
-        <div class="page-container">
-            <header class="bg-slate-900 text-white p-12">
+        <section class="pdf-page">
+            <header class="bg-slate-900 text-white p-10 -m-[20mm] mb-12 rounded-t-8">
                 <h1 class="text-4xl font-bold mb-2">김학선 <span class="text-xl font-normal opacity-70">| Cloud & DevOps Engineer</span></h1>
                 <p class="text-xl text-blue-400 font-medium mb-6">장애 원인 분석과 운영 자동화를 지향하는 주니어 엔지니어</p>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm opacity-80">
+                <div class="grid grid-cols-2 gap-4 text-sm opacity-80">
                     <p>📧 gkrtjs5544@gmail.com</p>
                     <p>📞 010-3870-5534</p>
                     <p>🔗 Github: github.com/khseon7</p>
@@ -53,214 +53,132 @@
                 </div>
             </header>
 
-            <main class="p-12 flex-grow">
-                <section class="mb-12">
-                    <h2 class="section-header border-b-2 border-slate-200 pb-2 mb-4 text-2xl font-bold text-slate-800">About Me</h2>
-                    <div class="text-slate-600 leading-relaxed space-y-4 text-lg">
-                        <p>
-                            단순한 기능 구현을 넘어, <strong>인프라의 안정성과 보안</strong>을 최우선으로 생각합니다.
-                            폐쇄망 환경에서 발생하는 예기치 못한 장애를 <strong>JVM Heap Dump 및 GC 로그 분석</strong>을 통해 근본 원인을 파악하고 해결한 경험이 있습니다.
-                        </p>
-                        <p>
-                            반복되는 운영 업무와 환경 의존성 문제를 <strong>PowerShell 스크립트와 CI/CD 파이프라인</strong>으로 자동화하여 팀의 생산성을 높이는 데 집중합니다.
-                            기술적 근거를 바탕으로 시스템의 빈틈을 메워나가는 DevOps 엔지니어로 성장하고 있습니다.
-                        </p>
+            <div class="mt-20">
+                <h2 class="section-header border-b-2 border-slate-200 pb-2 mb-4 text-2xl font-bold text-slate-800">About Me</h2>
+                <div class="text-slate-600 leading-relaxed space-y-4 text-lg">
+                    <p>단순한 기능 구현을 넘어, <strong>인프라의 안정성과 보안</strong>을 최우선으로 생각합니다. 폐쇄망 환경에서 발생하는 예기치 못한 장애를 <strong>JVM Heap Dump 및 GC 로그 분석</strong>을 통해 근본 원인을 파악하고 해결한 경험이 있습니다.</p>
+                    <p>반복되는 운영 업무와 환경 의존성 문제를 <strong>PowerShell 스크립트와 CI/CD 파이프라인</strong>으로 자동화하여 팀의 생산성을 높이는 데 집중합니다.</p>
+                </div>
+                <div class="flex gap-4 mt-8">
+                    <div class="bg-blue-50 border-l-4 border-blue-500 p-4 flex-1">
+                        <p class="text-blue-700 font-bold">✓ 배치 시스템 장애 발생률 0% 달성</p>
                     </div>
-                    <div class="grid grid-cols-1 md:grid-cols-2 mt-8 gap-4">
-                        <div class="bg-blue-50 border-l-4 border-blue-500 p-5">
-                            <p class="text-blue-700 font-bold text-lg">✓ 배치 시스템 장애 발생률 0% 달성</p>
-                            <p class="text-blue-600 text-sm mt-1">(JVM 최적화 및 로직 개선)</p>
-                        </div>
-                        <div class="bg-green-50 border-l-4 border-green-500 p-5">
-                            <p class="text-green-700 font-bold text-lg">✓ 인프라 리드 타임 75% 단축</p>
-                            <p class="text-green-600 text-sm mt-1">(Stateless 설계 및 자동화)</p>
-                        </div>
+                    <div class="bg-green-50 border-l-4 border-green-500 p-4 flex-1">
+                        <p class="text-green-700 font-bold">✓ 인프라 리드 타임 75% 단축</p>
                     </div>
-                </section>
-
-                <section>
-                    <h2 class="section-header border-b-2 border-slate-200 pb-2 mb-6 text-2xl font-bold text-slate-800">Technical Skills</h2>
-                    <div class="grid grid-cols-1 gap-6">
-                        <div class="bg-slate-50 p-6 rounded-lg">
-                            <h3 class="font-bold mb-4 text-blue-600 text-lg">Cloud & DevOps</h3>
-                            <div class="flex flex-wrap gap-2">
-                                <span class="tag">AWS (EC2, S3, Bedrock, VPC, IAM, ALB)</span>
-                                <span class="tag">Docker / Docker Compose</span>
-                                <span class="tag">GitHub Actions (CI/CD)</span>
-                                <span class="tag">PowerShell Scripting</span>
-                                <span class="tag">PyInstaller</span>
-                            </div>
-                        </div>
-                        <div class="bg-slate-50 p-6 rounded-lg">
-                            <h3 class="font-bold mb-4 text-blue-600 text-lg">Observability & Data</h3>
-                            <div class="flex flex-wrap gap-2">
-                                <span class="tag">JVM Tuning (Heap/GC Log 분석)</span>
-                                <span class="tag">PostgreSQL</span>
-                                <span class="tag">MariaDB</span>
-                                <span class="tag">OracleDB</span>
-                            </div>
-                        </div>
-                        <div class="bg-slate-50 p-6 rounded-lg">
-                            <h3 class="font-bold mb-4 text-blue-600 text-lg">Backend & AI</h3>
-                            <div class="flex flex-wrap gap-2">
-                                <span class="tag">Python (FastAPI)</span>
-                                <span class="tag">Java</span>
-                                <span class="tag">Next.js</span>
-                                <span class="tag">MCP (Model Context Protocol)</span>
-                                <span class="tag">RAG Architecture</span>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-            </main>
-        </div>
-
-        <div class="page-container">
-            <main class="p-12">
-                <section>
-                    <h2 class="section-header">Work Experience: 도슨티 (Docenty.ai)</h2>
-                    <p class="text-slate-500 mb-8 italic text-lg">2025.09 - 2026.03 | Engineering Product Dev</p>
-
-                    <div class="mb-12 border-l-4 border-blue-500 pl-6 py-2">
-                        <div class="flex justify-between items-start mb-4">
-                            <h3 class="text-2xl font-bold text-slate-800">보안 강화형 AWS LLM 에이전트 인프라 구축</h3>
-                            <span class="bg-blue-100 text-blue-700 text-xs px-3 py-1 rounded-full font-bold uppercase">Stability & Security</span>
-                        </div>
-                        <p class="text-slate-600 mb-6 leading-relaxed">
-                            외부 인터넷이 차단된 폐쇄망 환경에서 <strong>Amazon Bedrock(Claude)</strong>을 안전하게 활용하고, 에이전트의 실행 상태를 영구적으로 관리할 수 있는 <strong>Stateless 클라우드 인프라</strong>를 구축했습니다.
-                        </p>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-6">
-                            <div>
-                                <h4 class="font-bold mb-3 text-slate-700">핵심 구현 내용</h4>
-                                <ul class="list-disc ml-5 text-sm space-y-3 text-slate-600">
-                                    <li><strong>보안 통신 최적화:</strong> <strong>VPC Endpoint(PrivateLink)</strong>를 연동하여 인터넷 노출 없이 AWS 백본망을 통한 안전한 API 호출 구현</li>
-                                    <li><strong>Stateless 아키텍처:</strong> 기존 모놀리식 구조를 <strong>FastAPI + Next.js</strong>로 분리하고, <strong>ALB</strong>를 연동하여 세션 유지 및 확장성 확보</li>
-                                    <li><strong>중앙 집중형 로그 관리:</strong> 에이전트의 모든 수행 결과와 실행 로그를 <strong>Amazon S3</strong>에 자동 적재하여 데이터 내구성 확보</li>
-                                    <li><strong>최소 권한 원칙 적용:</strong> IAM Role 및 Endpoint Policy 설계를 통해 자원 접근 권한을 엄격히 제한하여 보안 감사 요건 충족</li>
-                                </ul>
-                            </div>
-                            <div class="bg-slate-100 rounded-lg flex flex-col items-center justify-center p-6 border border-slate-200">
-                                <div class="w-full h-40 bg-slate-200 rounded flex items-center justify-center mb-2">
-                                    <span class="text-slate-400 text-xs text-center">[AWS Architecture Diagram Space]<br>VPC Endpoint / ALB / Bedrock</span>
-                                </div>
-                                <p class="text-slate-500 text-xs italic text-center">* VPC Endpoint를 활용한 폐쇄망 보안 아키텍처</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="border-l-4 border-green-500 pl-6 py-2">
-                        <div class="flex justify-between items-start mb-4">
-                            <h3 class="text-2xl font-bold text-slate-800">MCP 기반 API 연동 서버 구축 및 배포 자동화(CI/CD)</h3>
-                            <span class="bg-green-100 text-green-700 text-xs px-3 py-1 rounded-full font-bold uppercase">Automation & DX</span>
-                        </div>
-                        <p class="text-slate-600 mb-6 leading-relaxed">
-                            사용자 환경마다 다른 Python 런타임 의존성 문제를 해결하고, 비개발자도 자연어로 Open API를 호출할 수 있도록 <strong>단일 바이너리 패키징 및 자동 빌드 파이프라인</strong>을 구축했습니다.
-                        </p>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-                            <div class="bg-red-50 p-5 rounded-lg border-l-4 border-red-400">
-                                <h4 class="text-red-700 font-bold mb-2 text-sm">Challenge (Problem)</h4>
-                                <ul class="list-disc ml-5 text-xs text-red-600 space-y-2">
-                                    <li>런타임 의존성 파편화로 인한 사용자 환경별 실행 오류 빈번</li>
-                                    <li>API 활용을 위한 수동 환경 설정 및 코드 작성 진입 장벽</li>
-                                    <li>수동 빌드 및 배포 프로세스로 인한 버전 관리의 어려움</li>
-                                </ul>
-                            </div>
-                            <div class="bg-green-50 p-5 rounded-lg border-l-4 border-green-400">
-                                <h4 class="text-green-700 font-bold mb-2 text-sm">Solution (DevOps)</h4>
-                                <ul class="list-disc ml-5 text-xs text-green-600 space-y-2">
-                                    <li>PyInstaller 기반 <strong>Standalone 바이너리</strong> 패키징으로 의존성 제거</li>
-                                    <li><strong>GitHub Actions</strong> CI 파이프라인으로 빌드 및 릴리스 자동화</li>
-                                    <li>사용자 설정 편의를 위한 <strong>대시보드 기반 자동 구성 UI</strong> 도입</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div>
-                            <h4 class="font-bold mb-3 text-slate-700">상세 구현 기술</h4>
-                            <ul class="list-disc ml-5 text-sm space-y-2 text-slate-600">
-                                <li><strong>독립 실행형 패키징:</strong> Python 미설치 환경에서도 동작하는 <strong>단일 실행 파일(.exe)</strong> 구조 설계로 기술 지원 요청 90% 절감</li>
-                                <li><strong>CI/CD 자동화:</strong> 코드 Tag push 시 자동으로 바이너리를 빌드하고 <strong>GitHub Releases</strong>에 아티팩트를 업로드하는 파이프라인 구축</li>
-                                <li><strong>인터페이스 추상화:</strong> 복잡한 API 규격을 LLM이 이해할 수 있는 <strong>MCP(Model Context Protocol)</strong> 기반 Tool 형태로 추상화</li>
-                            </ul>
-                        </div>
-                    </div>
-                </section>
-            </main>
-        </div>
-
-        <div class="page-container">
-            <main class="p-12">
-                <section class="mb-12">
-                    <h2 class="section-header border-b-2 border-slate-200 pb-2 mb-8 text-2xl font-bold text-slate-800">Troubleshooting & Optimization</h2>
-                    
-                    <div class="mb-12">
-                        <div class="flex items-center gap-3 mb-4">
-                            <h3 class="text-xl font-bold text-slate-800">1. JNI 호출에 따른 GCLocker 활성화 및 GC 불가 상태 해결</h3>
-                            <span class="bg-red-100 text-red-700 text-xs px-2 py-1 rounded">Critical Path</span>
-                        </div>
-                        <div class="space-y-4">
-                            <div class="border p-5 rounded-lg bg-slate-50">
-                                <p class="text-sm text-slate-700 leading-relaxed">
-                                    <strong>문제 상황:</strong> 대규모 배치 작업 중 실메모리 사용량이 낮음에도 <strong>간헐적 OutOfMemoryError(OOM)</strong> 발생.
-                                    <br><strong>분석 과정:</strong> Heap Dump 및 GC Log 분석 결과, UNION ALL 기반 대규모 INSERT 시 JNI Critical Section 진입으로 인한 <strong>GCLocker 활성화</strong>가 GC를 차단하고 있음을 규명.
-                                    <br><strong>해결 방안:</strong> 파티셔닝된 <strong>Batch Insert</strong> 도입으로 JNI 점유 시간 단축 및 OOM 감지 시 <strong>자동 Heap Dump 채득/재시작</strong> PowerShell 스크립트 구축.
-                                </p>
-                            </div>
-                            <p class="text-right font-bold text-blue-600 text-sm">결과: 근본 원인 해결을 통한 장애 발생 건수 0건 달성</p>
-                        </div>
-                    </div>
-
-                    <div>
-                        <div class="flex items-center gap-3 mb-4">
-                            <h3 class="text-xl font-bold text-slate-800">2. 배치 스케줄러 스레드 폭증 및 리소스 경합 최적화</h3>
-                            <span class="bg-blue-100 text-blue-700 text-xs px-2 py-1 rounded">Optimization</span>
-                        </div>
-                        <div class="space-y-4">
-                            <div class="border p-5 rounded-lg bg-slate-50">
-                                <p class="text-sm text-slate-700 leading-relaxed">
-                                    <strong>문제 상황:</strong> 무분별한 스레드 생성으로 인한 <strong>스레드 10,000개 폭증</strong> 및 Context Switching 부하로 시스템 다운.
-                                    <br><strong>해결 방안:</strong> <strong>ThreadPoolExecutor</strong>를 통한 스레드 가동량 제어, <strong>LinkedBlockingQueue</strong>로 Back-pressure 조절, <strong>SimpleJdbcInsert 객체 캐싱</strong>으로 GC 부하 완화.
-                                </p>
-                            </div>
-                            <p class="text-right font-bold text-blue-600 text-sm">결과: 안정적인 대용량 데이터 처리 보장 및 시스템 안정성 확보</p>
-                        </div>
-                    </div>
-                </section>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-12 mt-12 border-t pt-12">
-                    <section>
-                        <h2 class="section-header">Education</h2>
-                        <div class="space-y-6 text-sm">
-                            <div>
-                                <p class="font-bold text-slate-800 text-base">세종대학교</p>
-                                <p class="text-slate-600">데이터사이언스학과 졸업 (2024.03 - 2026.02) </p>
-                                <p class="text-blue-600 font-semibold">학점: 4.1 / 4.5</p>
-                            </div>
-                            <div>
-                                <p class="font-bold text-slate-800 text-base">한국산업기술대학교(KPU)</p>
-                                <p class="text-slate-600">컴퓨터공학부 중퇴 (2019.03 - 2023.08) </p>
-                            </div>
-                        </div>
-                    </section>
-                    <section>
-                        <h2 class="section-header">Awards & Blog</h2>
-                        <ul class="text-sm space-y-3">
-                            <li class="flex items-center gap-2"><span class="result-badge">우수상</span> 제4회 세종 U&I 페스티벌 캡스톤 경진대회</li>
-                            <li class="flex items-center gap-2"><span class="result-badge">대상</span> 2025 제19회 세종대학교 창의설계경진대회</li>
-                            <li class="flex items-center gap-2"><span class="result-badge">1등</span> 2024 인공지능데이터사이언스 융합학술제</li>
-                            <li class="mt-6">
-                                <a href="https://khseon7.tistory.com/" class="text-blue-600 font-bold hover:underline">
-                                    기술 블로그: 논문 리뷰 및 실습 코드 정리 →
-                                </a>
-                            </li>
-                        </ul>
-                    </section>
                 </div>
 
-                <footer class="mt-20 pb-12 text-center text-slate-400 text-xs border-t pt-8">
-                    © 2026 Hak Sun Kim. Built for Reliability and Stability. 
-                </footer>
-            </main>
-        </div>
+                <h2 class="section-header border-b-2 border-slate-200 pb-2 mb-6 mt-16 text-2xl font-bold text-slate-800">Technical Skills</h2>
+                <div class="grid grid-cols-1 gap-6">
+                    <div class="bg-slate-50 p-6 rounded-lg">
+                        <h3 class="font-bold mb-3 text-blue-600">Cloud & DevOps</h3>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="tag">AWS (EC2, S3, Bedrock, VPC, IAM, ALB)</span>
+                            <span class="tag">Docker / Docker Compose</span>
+                            <span class="tag">GitHub Actions (CI/CD)</span>
+                            <span class="tag">PowerShell Scripting</span>
+                        </div>
+                    </div>
+                    <div class="bg-slate-50 p-6 rounded-lg">
+                        <h3 class="font-bold mb-3 text-blue-600">Observability & Backend</h3>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="tag">JVM Tuning (Heap/GC Log 분석)</span>
+                            <span class="tag">PostgreSQL / MariaDB / Oracle</span>
+                            <span class="tag">Python (FastAPI) / Next.js / MCP</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="pdf-page">
+            <h2 class="section-header border-b-2 border-slate-200 pb-2 mb-2 text-2xl font-bold text-slate-800">Work Experience: 도슨티 (Docenty.ai)</h2>
+            <p class="text-slate-400 mb-8 italic">2025.09 - 2026.03 | Engineering Product Dev</p>
+
+            <div class="mb-12 border-l-4 border-blue-500 pl-6 py-2">
+                <div class="flex justify-between items-start mb-4">
+                    <h3 class="text-xl font-bold text-slate-800">보안 강화형 AWS LLM 에이전트 인프라 구축</h3>
+                    <span class="bg-blue-100 text-blue-700 text-xs px-3 py-1 rounded-full font-bold">Security</span>
+                </div>
+                <p class="text-slate-600 mb-6 text-sm">Amazon Bedrock을 안전하게 활용하는 <strong>Stateless 클라우드 인프라</strong>를 구축했습니다.</p>
+                <ul class="list-disc ml-5 text-sm space-y-3 text-slate-600 mb-6">
+                    <li><strong>VPC Endpoint:</strong> 인터넷 노출 없는 안전한 API 호출 구현</li>
+                    <li><strong>Stateless 아키텍처:</strong> FastAPI + Next.js 분리 및 ALB 연동</li>
+                    <li><strong>로그 관리:</strong> 에이전트 실행 로그 S3 자동 적재</li>
+                </ul>
+                <div class="bg-blue-50 p-4 rounded-lg">
+                    <p class="text-xs font-bold text-blue-800 mb-2">Skills: AWS Bedrock, VPC Endpoint, ALB, Docker Compose</p>
+                </div>
+            </div>
+
+            <div class="border-l-4 border-green-500 pl-6 py-2">
+                <div class="flex justify-between items-start mb-4">
+                    <h3 class="text-xl font-bold text-slate-800">MCP 기반 API 연동 서버 및 배포 자동화</h3>
+                    <span class="bg-green-100 text-green-700 text-xs px-3 py-1 rounded-full font-bold">CI/CD</span>
+                </div>
+                <p class="text-slate-600 mb-6 text-sm">Python 런타임 의존성 해결을 위해 <strong>단일 바이너리 패키징</strong>을 구축했습니다.</p>
+                <ul class="list-disc ml-5 text-sm space-y-3 text-slate-600 mb-6">
+                    <li><strong>Standalone 패키징:</strong> PyInstaller로 .exe 빌드 (기술 지원 90% 절감)</li>
+                    <li><strong>GitHub Actions:</strong> Tag push 시 자동 릴리스 및 아티팩트 업로드</li>
+                    <li><strong>인터페이스 추상화:</strong> 복잡한 API를 MCP 기반 Tool로 추상화</li>
+                </ul>
+                <div class="bg-green-50 p-4 rounded-lg">
+                    <p class="text-xs font-bold text-green-800 mb-2">Skills: GitHub Actions, PyInstaller, MCP, Python</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="pdf-page">
+            <h2 class="section-header border-b-2 border-slate-200 pb-2 mb-8 text-2xl font-bold text-slate-800">Troubleshooting</h2>
+            
+            <div class="mb-10">
+                <h3 class="text-lg font-bold mb-4 text-slate-800">1. JNI 호출에 따른 GCLocker 및 GC 불가 상태 해결</h3>
+                <div class="grid grid-cols-2 gap-4 mb-4">
+                    <div class="bg-red-50 p-4 rounded border-l-2 border-red-400 text-xs">
+                        <p class="font-bold text-red-700 mb-1">Problem</p>
+                        대규모 배치 중 간헐적 OOM 발생 및 프로세스 중단
+                    </div>
+                    <div class="bg-blue-50 p-4 rounded border-l-2 border-blue-400 text-xs">
+                        <p class="font-bold text-blue-700 mb-1">Analysis</p>
+                        JNI Critical Section 진입으로 인한 GCLocker 활성화 확인
+                    </div>
+                </div>
+                <p class="text-sm text-slate-600"><strong>Solution:</strong> 파티셔닝된 Batch Insert 도입 및 PowerShell 기반 자가 치유(Self-Healing) 스크립트 구축</p>
+            </div>
+
+            <div class="mb-16">
+                <h3 class="text-lg font-bold mb-4 text-slate-800">2. 배치 스케줄러 스레드 폭증 최적화</h3>
+                <div class="bg-green-50 p-5 rounded-lg text-sm">
+                    <ul class="space-y-2 text-slate-700">
+                        <li>• <strong>ThreadPoolExecutor:</strong> 최대 스레드 가동량 제어</li>
+                        <li>• <strong>Back-pressure:</strong> LinkedBlockingQueue로 대기 작업량 관리</li>
+                        <li>• <strong>객체 재사용:</strong> 캐싱을 통한 GC 부하 완화</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-2 gap-10 border-t pt-10">
+                <div>
+                    <h2 class="section-header text-xl">Education</h2>
+                    <div class="text-sm space-y-2">
+                        <p><strong>세종대학교</strong> 데이터사이언스 졸업</p>
+                        <p class="text-slate-500">학점: 4.1/4.5 (2024.03 - 2026.02)</p>
+                        <p><strong>한국산업기술대학교</strong> 컴공 중퇴</p>
+                    </div>
+                </div>
+                <div>
+                    <h2 class="section-header text-xl">Awards</h2>
+                    <ul class="text-xs space-y-2">
+                        <li><span class="result-badge">대상</span> 세종대 창의설계경진대회</li>
+                        <li><span class="result-badge">1등</span> AI 데이터사이언스 학술제</li>
+                    </ul>
+                </div>
+            </div>
+
+            <footer class="absolute bottom-10 left-0 right-0 text-center text-slate-400 text-xs">
+                © 2026 Hak Sun Kim. Built for Reliability and Stability.
+            </footer>
+        </section>
     </div>
 
     <script>
@@ -268,10 +186,11 @@
             const element = document.getElementById('pdf-content');
             const options = {
                 margin: 0,
-                filename: 'Cloud_DevOps_Engineer_김학선_포트폴리오.pdf',
+                filename: 'Cloud_DevOps_Engineer_김학선.pdf',
                 image: { type: 'jpeg', quality: 0.98 },
                 html2canvas: { scale: 2, useCORS: true, logging: false },
-                jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+                jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
+                pagebreak: { mode: ['avoid-all', 'css', 'legacy'] }
             };
             html2pdf().set(options).from(element).save();
         }
