@@ -8,6 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         body { font-family: 'Pretendard', sans-serif; background-color: #f3f4f6; color: #1f2937; }
+        /* 컨테이너 설정을 유지하되, 마진을 상하로 줌 */
         .page-container { max-width: 900px; margin: 2rem auto; background: white; box-shadow: 0 10px 25px -5px rgba(0,0,0,0.1); border-radius: 8px; overflow: hidden; }
         .section-header { border-left: 4px solid #3b82f6; padding-left: 1rem; margin-bottom: 1.5rem; font-size: 1.25rem; font-weight: 700; color: #111827; }
         .tag { background: #eff6ff; color: #1d4ed8; padding: 2px 10px; border-radius: 4px; font-size: 0.8rem; font-weight: 600; }
@@ -48,8 +49,8 @@
                     </div>
                     <div class="bg-green-50 border-l-4 border-green-500 p-4 flex-1">
                         <p class="text-green-700 font-bold">✓ 인프라 리드 타임 75% 단축 (Stateless 설계)</p>
+                    </div>
                 </div>
-            </div>
             </section>
 
             <section class="mb-12">
@@ -65,7 +66,6 @@
                             <span class="tag">PyInstaller</span>
                         </div>
                     </div>
-                    
                     <div class="bg-slate-50 p-5 rounded-lg">
                         <h3 class="font-bold mb-3 text-blue-600">Observability & Data</h3>
                         <div class="flex flex-wrap gap-2">
@@ -75,7 +75,6 @@
                             <span class="tag">OracleDB</span>
                         </div>
                     </div>
-    
                     <div class="bg-slate-50 p-5 rounded-lg">
                         <h3 class="font-bold mb-3 text-blue-600">Backend & AI</h3>
                         <div class="flex flex-wrap gap-2">
@@ -88,233 +87,205 @@
                     </div>
                 </div>
             </section>
-        </main>
-    </div>
 
-    <div class="page-container p-12">
-        <h2 class="section-header">Work Experience: 도슨티 (Docenty.ai)</h2>
-        <p class="text-slate-400 mb-8 italic">2025.09 - 2026.03 | Engineering Product Dev</p>
+            <section class="mb-12">
+                <h2 class="section-header">Work Experience: 도슨티 (Docenty.ai)</h2>
+                <p class="text-slate-400 mb-8 italic">2025.09 - 2026.03 | Engineering Product Dev</p>
 
-        <div class="mb-12 border-b pb-8">
-            <div class="mb-12 border-l-4 border-blue-500 pl-6 py-2">
-                <div class="flex justify-between items-start mb-4">
-                    <h3 class="text-2xl font-bold text-slate-800">보안 강화형 AWS LLM 에이전트 인프라 구축</h3>
-                    <span class="bg-blue-100 text-blue-700 text-xs px-3 py-1 rounded-full font-bold">운영 안정성 & 보안</span>
+                <div class="mb-12 border-b pb-8">
+                    <div class="mb-12 border-l-4 border-blue-500 pl-6 py-2">
+                        <div class="flex justify-between items-start mb-4">
+                            <h3 class="text-2xl font-bold text-slate-800">보안 강화형 AWS LLM 에이전트 인프라 구축</h3>
+                            <span class="bg-blue-100 text-blue-700 text-xs px-3 py-1 rounded-full font-bold">운영 안정성 & 보안</span>
+                        </div>
+                        <p class="text-slate-600 mb-6 leading-relaxed">
+                            외부 인터넷이 차단된 폐쇄망 환경에서 **Amazon Bedrock(Claude)**을 안전하게 활용하고, 에이전트의 실행 상태를 영구적으로 관리할 수 있는 **Stateless 클라우드 인프라**를 구축했습니다.
+                        </p>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-6">
+                            <div>
+                                <h4 class="font-bold mb-3 text-slate-700">핵심 구현 내용</h4>
+                                <ul class="list-disc ml-5 text-sm space-y-3 text-slate-600">
+                                    <li><strong>보안 통신 최적화:</strong> <strong>VPC Endpoint(PrivateLink)</strong>를 연동하여 인터넷 노출 없이 AWS 백본망을 통한 안전한 API 호출 구현</li>
+                                    <li><strong>Stateless 아키텍처:</strong> 기존 모놀리식 구조를 <strong>FastAPI + Next.js</strong>로 분리하고, <strong>ALB</strong>를 연동하여 세션 유지 및 확장성 확보</li>
+                                    <li><strong>중앙 집중형 로그 관리:</strong> 에이전트의 모든 수행 결과와 실행 로그를 <strong>Amazon S3</strong>에 자동 적재하여 데이터 내구성 확보</li>
+                                    <li><strong>최소 권한 원칙 적용:</strong> IAM Role 및 Endpoint Policy 설계를 통해 자원 접근 권한을 엄격히 제한하여 보안 감사 요건 충족</li>
+                                </ul>
+                            </div>
+                            <div class="bg-slate-100 rounded-lg flex flex-col items-center justify-center p-4 border border-slate-200">
+                                <img src="images/aws_project_architecture.png" alt="AWS Architecture Diagram" class="max-w-full h-auto rounded shadow-sm">
+                                <p class="text-slate-500 text-xs mt-3 italic text-center">
+                                    * VPC Endpoint를 활용한 폐쇄망 보안 아키텍처
+                                </p>
+                            </div>
+                        </div>
+                        <div class="bg-blue-50 p-4 rounded-lg border border-blue-100">
+                            <h4 class="font-bold mb-2 text-blue-800 text-sm">Skills Used</h4>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="tag bg-white border border-blue-200">AWS Bedrock</span>
+                                <span class="tag bg-white border border-blue-200">VPC Endpoint</span>
+                                <span class="tag bg-white border border-blue-200">ALB</span>
+                                <span class="tag bg-white border border-blue-200">S3 (Log Pipeline)</span>
+                                <span class="tag bg-white border border-blue-200">Docker Compose</span>
+                                <span class="tag bg-white border border-blue-200">FastAPI</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <p class="text-slate-600 mb-6 leading-relaxed">
-                    외부 인터넷이 차단된 폐쇄망 환경에서 **Amazon Bedrock(Claude)**을 안전하게 활용하고, 
-                    에이전트의 실행 상태를 영구적으로 관리할 수 있는 **Stateless 클라우드 인프라**를 구축했습니다.
-                </p>
-                
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-6">
+
+                <div class="mb-12 border-l-4 border-green-500 pl-6 py-2">
+                    <div class="flex justify-between items-start mb-4">
+                        <h3 class="text-2xl font-bold text-slate-800">MCP 기반 API 연동 서버 구축 및 배포 자동화(CI/CD)</h3>
+                        <span class="bg-green-100 text-green-700 text-xs px-3 py-1 rounded-full font-bold">배포 자동화 & DX 개선</span>
+                    </div>
+                    <p class="text-slate-600 mb-6 leading-relaxed">
+                        사용자 환경마다 다른 Python 런타임 의존성 문제를 해결하고, 비개발자도 자연어로 Open API를 호출할 수 있도록 **단일 바이너리 패키징 및 자동 빌드 파이프라인**을 구축했습니다.
+                    </p>
+                    <div class="grid grid-cols-2 md:grid-cols-2 gap-6 mb-6">
+                        <div class="bg-red-50 p-4 rounded-lg border-l-4 border-red-400">
+                            <h4 class="text-red-700 font-bold mb-2 text-sm">Challenge (Problem)</h4>
+                            <ul class="list-disc ml-5 text-xs text-red-600 space-y-1">
+                                <li>런타임 의존성 파편화로 인한 사용자 환경별 실행 오류 빈번</li>
+                                <li>API 활용을 위한 수동 환경 설정 및 코드 작성 진입 장벽</li>
+                                <li>수동 빌드 및 배포 프로세스로 인한 버전 관리의 어려움</li>
+                            </ul>
+                        </div>
+                        <div class="bg-green-50 p-4 rounded-lg border-l-4 border-green-400">
+                            <h4 class="text-green-700 font-bold mb-2 text-sm">Solution (DevOps)</h4>
+                            <ul class="list-disc ml-5 text-xs text-green-600 space-y-1">
+                                <li>PyInstaller 기반 <strong>Standalone 바이너리</strong> 패키징으로 의존성 제거</li>
+                                <li><strong>GitHub Actions</strong> CI 파이프라인으로 빌드 및 릴리스 자동화</li>
+                                <li>사용자 설정 편의를 위한 <strong>대시보드 기반 자동 구성 UI</strong> 도입</li>
+                            </ul>
+                        </div>
+                    </div>
                     <div>
                         <h4 class="font-bold mb-3 text-slate-700">핵심 구현 내용</h4>
-                        <ul class="list-disc ml-5 text-sm space-y-3 text-slate-600">
-                            <li><strong>보안 통신 최적화:</strong> <strong>VPC Endpoint(PrivateLink)</strong>를 연동하여 인터넷 노출 없이 AWS 백본망을 통한 안전한 API 호출 구현</li>
-                            <li><strong>Stateless 아키텍처:</strong> 기존 모놀리식 구조를 <strong>FastAPI + Next.js</strong>로 분리하고, <strong>ALB</strong>를 연동하여 세션 유지 및 확장성 확보</li>
-                            <li><strong>중앙 집중형 로그 관리:</strong> 에이전트의 모든 수행 결과와 실행 로그를 <strong>Amazon S3</strong>에 자동 적재하여 데이터 내구성 확보</li>
-                            <li><strong>최소 권한 원칙 적용:</strong> IAM Role 및 Endpoint Policy 설계를 통해 자원 접근 권한을 엄격히 제한하여 보안 감사 요건 충족</li>
+                        <ul class="list-disc ml-5 text-sm space-y-2 text-slate-600">
+                            <li><strong>독립 실행형 패키징:</strong> Python 미설치 환경에서도 동작하는 <strong>단일 실행 파일(.exe)</strong> 구조 설계로 환경 이슈 관련 기술 지원 요청 90% 절감</li>
+                            <li><strong>CI/CD 자동화:</strong> 코드 Tag push 시 자동으로 바이너리를 빌드하고 <strong>GitHub Releases</strong>에 버전별 아티팩트를 업로드하는 파이프라인 구축</li>
+                            <li><strong>인터페이스 추상화:</strong> 복잡한 API 규격을 LLM이 이해할 수 있는 <strong>MCP(Model Context Protocol)</strong> 기반 Tool 형태로 추상화</li>
+                            <li><strong>보안 실행 환경:</strong> LLM 생성 코드의 오동작 방지를 위한 내부 샌드박스 격리 및 API 호출 권한 제어</li>
                         </ul>
                     </div>
-                    
-                    <div class="bg-slate-100 rounded-lg flex items-center justify-center p-4 border border-slate-200">
-                        <img src="images/aws_project_architecture.png" alt="AWS Architecture Diagram" class="max-w-full h-auto rounded shadow-sm">
-                        <p class="text-slate-500 text-xs mt-3 italic text-center">
-                            * VPC Endpoint를 활용한 폐쇄망 보안 아키텍처
-                        </p>
-                    </div>
-                </div>
-            
-                <div class="bg-blue-50 p-4 rounded-lg border border-blue-100">
-                    <h4 class="font-bold mb-2 text-blue-800 text-sm">Skills Used</h4>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="tag bg-white border border-blue-200">AWS Bedrock</span>
-                        <span class="tag bg-white border border-blue-200">VPC Endpoint</span>
-                        <span class="tag bg-white border border-blue-200">ALB</span>
-                        <span class="tag bg-white border border-blue-200">S3 (Log Pipeline)</span>
-                        <span class="tag bg-white border border-blue-200">Docker Compose</span>
-                        <span class="tag bg-white border border-blue-200">FastAPI</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="mb-12 border-l-4 border-green-500 pl-6 py-2">
-            <div class="flex justify-between items-start mb-4">
-                <h3 class="text-2xl font-bold text-slate-800">MCP 기반 API 연동 서버 구축 및 배포 자동화(CI/CD)</h3>
-                <span class="bg-green-100 text-green-700 text-xs px-3 py-1 rounded-full font-bold">배포 자동화 & DX 개선</span>
-            </div>
-            <p class="text-slate-600 mb-6 leading-relaxed">
-                사용자 환경마다 다른 Python 런타임 의존성 문제를 해결하고, 
-                비개발자도 자연어로 Open API를 호출할 수 있도록 **단일 바이너리 패키징 및 자동 빌드 파이프라인**을 구축했습니다.
-            </p>
-            
-            <div class="grid grid-cols-2 md:grid-cols-2 gap-6 mb-6">
-                <div class="bg-red-50 p-4 rounded-lg border-l-4 border-red-400">
-                    <h4 class="text-red-700 font-bold mb-2 text-sm">Challenge (Problem)</h4>
-                    <ul class="list-disc ml-5 text-xs text-red-600 space-y-1">
-                        <li>런타임 의존성 파편화로 인한 사용자 환경별 실행 오류 빈번</li>
-                        <li>API 활용을 위한 수동 환경 설정 및 코드 작성 진입 장벽</li>
-                        <li>수동 빌드 및 배포 프로세스로 인한 버전 관리의 어려움</li>
-                    </ul>
-                </div>
-                <div class="bg-green-50 p-4 rounded-lg border-l-4 border-green-400">
-                    <h4 class="text-green-700 font-bold mb-2 text-sm">Solution (DevOps)</h4>
-                    <ul class="list-disc ml-5 text-xs text-green-600 space-y-1">
-                        <li>PyInstaller 기반 <strong>Standalone 바이너리</strong> 패키징으로 의존성 제거</li>
-                        <li><strong>GitHub Actions</strong> CI 파이프라인으로 빌드 및 릴리스 자동화</li>
-                        <li>사용자 설정 편의를 위한 <strong>대시보드 기반 자동 구성 UI</strong> 도입</li>
-                    </ul>
-                </div>
-            </div>
-        
-            <div>
-                <h4 class="font-bold mb-3 text-slate-700">핵심 구현 내용</h4>
-                <ul class="list-disc ml-5 text-sm space-y-2 text-slate-600">
-                    <li><strong>독립 실행형 패키징:</strong> Python 미설치 환경에서도 동작하는 <strong>단일 실행 파일(.exe)</strong> 구조 설계로 환경 이슈 관련 기술 지원 요청 90% 절감</li>
-                    <li><strong>CI/CD 자동화:</strong> 코드 Tag push 시 자동으로 바이너리를 빌드하고 <strong>GitHub Releases</strong>에 버전별 아티팩트를 업로드하는 파이프라인 구축</li>
-                    <li><strong>인터페이스 추상화:</strong> 복잡한 API 규격을 LLM이 이해할 수 있는 <strong>MCP(Model Context Protocol)</strong> 기반 Tool 형태로 추상화</li>
-                    <li><strong>보안 실행 환경:</strong> LLM 생성 코드의 오동작 방지를 위한 내부 샌드박스 격리 및 API 호출 권한 제어</li>
-                </ul>
-            </div>
-        
-            <div class="bg-slate-50 p-4 rounded-lg mt-6 border border-slate-200">
-                <h4 class="font-bold mb-2 text-blue-600 text-sm">Skills Used</h4>
-                <div class="flex flex-wrap gap-2">
-                    <span class="tag bg-white border border-slate-300">GitHub Actions (CI/CD)</span>
-                    <span class="tag bg-white border border-slate-300">PyInstaller</span>
-                    <span class="tag bg-white border border-slate-300">GitHub Releases</span>
-                    <span class="tag bg-white border border-slate-300">Python</span>
-                    <span class="tag bg-white border border-slate-300">MCP</span>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <section class="p-12 bg-white">
-        <h2 class="section-header border-b-2 border-slate-200 pb-2 mb-8 text-2xl font-bold text-slate-800">Troubleshooting & Optimization</h2>
-    
-        <div class="mb-16">
-            <div class="flex items-center gap-3 mb-4">
-                <h3 class="text-xl font-bold">1. JNI 호출에 따른 GCLocker 활성화 및 GC 불가 상태 해결</h3>
-                <span class="bg-red-100 text-red-700 text-xs px-2 py-1 rounded">Critical Path</span>
-            </div>
-            
-            <div class="grid grid-cols-2 md:grid-cols-2 gap-6 mb-4">
-                <div class="border p-5 rounded-lg bg-red-50">
-                    <h4 class="font-bold text-red-700 mb-2 text-sm flex items-center">
-                        <span class="mr-2">⚠️</span> AS-IS (Problem)
-                    </h4>
-                    <p class="text-sm text-slate-700 leading-relaxed">
-                        대규모 배치 작업 중 실메모리 사용량이 임계치 미만임에도 불구하고 <strong>간헐적 OutOfMemoryError(OOM)</strong> 발생 및 프로세스 중단 현상 반복.
-                    </p>
-                </div>
-                <div class="border p-5 rounded-lg bg-blue-50">
-                    <h4 class="font-bold text-blue-700 mb-2 text-sm flex items-center">
-                        <span class="mr-2">🔍</span> Analysis (Approach)
-                    </h4>
-                    <ul class="text-xs text-slate-700 space-y-2">
-                        <li>- <strong>Heap Dump 분석:</strong> 실제 힙 점유율은 낮으나 GC가 수행되지 않는 모순 확인</li>
-                        <li>- <strong>GC Log 정밀 분석:</strong> UNION ALL 기반 대규모 INSERT 실행 시 JNI 호출 발생 확인</li>
-                        <li>- <strong>원인 특정:</strong> JNI Critical Section 진입으로 인한 <strong>GCLocker 활성화</strong>가 GC를 차단하고 있음을 규명</li>
-                    </ul>
-                </div>
-            </div>
-    
-            <div class="border p-5 rounded-lg bg-green-50 mb-4">
-                <h4 class="font-bold text-green-700 mb-2 text-sm flex items-center">
-                    <span class="mr-2">✅</span> TO-BE (Solution)
-                </h4>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <ul class="text-xs text-slate-700 space-y-2">
-                        <li>- <strong>전략 수정:</strong> UNION ALL 방식 대신 파티셔닝된 **Batch Insert** 도입으로 JNI 점유 시간 단축</li>
-                        <li>- <strong>리소스 최적화:</strong> DB 드라이버 설정 및 쿼리 튜닝으로 Critical Section 체류 최소화</li>
-                    </ul>
-                    <ul class="text-xs text-slate-700 space-y-2">
-                        <li>- <strong>자가 치유(Self-Healing):</strong> OOM 감지 시 <strong>자동 Heap Dump 채득 및 프로세스 재시작</strong>을 수행하는 PowerShell 스크립트 구축</li>
-                    </ul>
-                </div>
-            </div>
-            <p class="text-right font-bold text-blue-600 text-sm">Result: 근본 원인 해결을 통한 장애 발생 건수 0건 달성</p>
-        </div>
-    
-        <div>
-            <div class="flex items-center gap-3 mb-4">
-                <h3 class="text-xl font-bold">2. 배치 스케줄러 스레드 폭증 및 리소스 경합 최적화</h3>
-                <span class="bg-blue-100 text-blue-700 text-xs px-2 py-1 rounded">Optimization</span>
-            </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-4">
-                <div class="border p-5 rounded-lg bg-red-50">
-                    <h4 class="font-bold text-red-700 mb-2 text-sm">⚠️ AS-IS</h4>
-                    <p class="text-sm text-slate-700">
-                        작업당 무분별한 스레드 생성으로 인한 <strong>스레드 수 10,000개 폭증</strong> 및 Context Switching 부하로 시스템 다운.
-                    </p>
-                </div>
-                <div class="border p-5 rounded-lg bg-green-50">
-                    <h4 class="font-bold text-green-700 mb-2 text-sm">✅ TO-BE</h4>
-                    <ul class="text-xs text-slate-700 space-y-2">
-                        <li>- <strong>ThreadPoolExecutor:</strong> 공통 풀 구현으로 최대 스레드 가동량 및 생성 주기 제어</li>
-                        <li>- <strong>Back-pressure 조절:</strong> LinkedBlockingQueue 도입으로 대기 작업량 관리 및 시스템 과부하 방지</li>
-                        <li>- <strong>객체 재사용:</strong> SimpleJdbcInsert 객체 캐싱을 통해 무분별한 객체 생성 방지 및 GC 부하 완화</li>
-                    </ul>
-                </div>
-            </div>
-            <p class="text-right font-bold text-blue-600 text-sm">Result: 리소스 관리 최적화로 안정적인 대용량 데이터 처리 보장</p>
-        </div>
-    </section>
-
-    <div class="page-container p-12">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-            <section>
-                <h2 class="section-header">Education</h2>
-                <div class="space-y-4 text-sm">
-                    <div>
-                        <p class="font-bold">세종대학교</p>
-                        <p class="text-slate-600">데이터사이언스학과 졸업 (2024.03 - 2026.02) </p>
-                        <p class="text-slate-600">학점: 4.1/4.5</p>
-                    </div>
-                    <div>
-                        <p class="font-bold">한국산업기술대학교(KPU)</p>
-                        <p class="text-slate-600">컴퓨터공학부 중퇴 (2019.03 - 2023.08) </p>
+                    <div class="bg-slate-50 p-4 rounded-lg mt-6 border border-slate-200">
+                        <h4 class="font-bold mb-2 text-blue-600 text-sm">Skills Used</h4>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="tag bg-white border border-slate-300">GitHub Actions (CI/CD)</span>
+                            <span class="tag bg-white border border-slate-300">PyInstaller</span>
+                            <span class="tag bg-white border border-slate-300">GitHub Releases</span>
+                            <span class="tag bg-white border border-slate-300">Python</span>
+                            <span class="tag bg-white border border-slate-300">MCP</span>
+                        </div>
                     </div>
                 </div>
             </section>
-            <section>
-                <h2 class="section-header">Awards & Blog</h2>
-                <ul class="text-sm space-y-3">
-                    <li class="flex items-center gap-2">
-                        <span class="result-badge">우수상</span> 제4회 세종 U&I 페스티벌 캡스톤 디자인 경진대회 
-                    </li>
-                    <li class="flex items-center gap-2">
-                        <span class="result-badge">대상</span> 2025 제19회 세종대학교 창의설계경진대회 
-                    </li>
-                    <li class="flex items-center gap-2">
-                        <span class="result-badge">1등</span> 2024 인공지능데이터사이언스 융합학술제 
-                    </li>
-                    <li class="mt-4 italic text-blue-600 font-medium underline">
-                        <a href="https://khseon7.tistory.com/">기술 블로그: 논문 리뷰 및 실습 코드 정리 </a>
-                    </li>
-                </ul>
+
+            <section class="mb-12">
+                <h2 class="section-header border-b-2 border-slate-200 pb-2 mb-8 text-2xl font-bold text-slate-800">Troubleshooting & Optimization</h2>
+                <div class="mb-16">
+                    <div class="flex items-center gap-3 mb-4">
+                        <h3 class="text-xl font-bold">1. JNI 호출에 따른 GCLocker 활성화 및 GC 불가 상태 해결</h3>
+                        <span class="bg-red-100 text-red-700 text-xs px-2 py-1 rounded">Critical Path</span>
+                    </div>
+                    <div class="grid grid-cols-2 md:grid-cols-2 gap-6 mb-4">
+                        <div class="border p-5 rounded-lg bg-red-50">
+                            <h4 class="font-bold text-red-700 mb-2 text-sm flex items-center">
+                                <span class="mr-2">⚠️</span> AS-IS (Problem)
+                            </h4>
+                            <p class="text-sm text-slate-700 leading-relaxed">
+                                대규모 배치 작업 중 실메모리 사용량이 임계치 미만임에도 불구하고 <strong>간헐적 OutOfMemoryError(OOM)</strong> 발생 및 프로세스 중단 현상 반복.
+                            </p>
+                        </div>
+                        <div class="border p-5 rounded-lg bg-blue-50">
+                            <h4 class="font-bold text-blue-700 mb-2 text-sm flex items-center">
+                                <span class="mr-2">🔍</span> Analysis (Approach)
+                            </h4>
+                            <ul class="text-xs text-slate-700 space-y-2">
+                                <li>- <strong>Heap Dump 분석:</strong> 실제 힙 점유율은 낮으나 GC가 수행되지 않는 모순 확인</li>
+                                <li>- <strong>GC Log 정밀 분석:</strong> UNION ALL 기반 대규모 INSERT 실행 시 JNI 호출 발생 확인</li>
+                                <li>- <strong>원인 특정:</strong> JNI Critical Section 진입으로 인한 <strong>GCLocker 활성화</strong>가 GC를 차단하고 있음을 규명</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="border p-5 rounded-lg bg-green-50 mb-4">
+                        <h4 class="font-bold text-green-700 mb-2 text-sm flex items-center">
+                            <span class="mr-2">✅</span> TO-BE (Solution)
+                        </h4>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <ul class="text-xs text-slate-700 space-y-2">
+                                <li>- <strong>전략 수정:</strong> UNION ALL 방식 대신 파티셔닝된 **Batch Insert** 도입으로 JNI 점유 시간 단축</li>
+                                <li>- <strong>리소스 최적화:</strong> DB 드라이버 설정 및 쿼리 튜닝으로 Critical Section 체류 최소화</li>
+                            </ul>
+                            <ul class="text-xs text-slate-700 space-y-2">
+                                <li>- <strong>자가 치유(Self-Healing):</strong> OOM 감지 시 <strong>자동 Heap Dump 채득 및 프로세스 재시작</strong>을 수행하는 PowerShell 스크립트 구축</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <p class="text-right font-bold text-blue-600 text-sm">Result: 근본 원인 해결을 통한 장애 발생 건수 0건 달성</p>
+                </div>
+
+                <div>
+                    <div class="flex items-center gap-3 mb-4">
+                        <h3 class="text-xl font-bold">2. 배치 스케줄러 스레드 폭증 및 리소스 경합 최적화</h3>
+                        <span class="bg-blue-100 text-blue-700 text-xs px-2 py-1 rounded">Optimization</span>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-4">
+                        <div class="border p-5 rounded-lg bg-red-50">
+                            <h4 class="font-bold text-red-700 mb-2 text-sm">⚠️ AS-IS</h4>
+                            <p class="text-sm text-slate-700">
+                                작업당 무분별한 스레드 생성으로 인한 <strong>스레드 수 10,000개 폭증</strong> 및 Context Switching 부하로 시스템 다운.
+                            </p>
+                        </div>
+                        <div class="border p-5 rounded-lg bg-green-50">
+                            <h4 class="font-bold text-green-700 mb-2 text-sm">✅ TO-BE</h4>
+                            <ul class="text-xs text-slate-700 space-y-2">
+                                <li>- <strong>ThreadPoolExecutor:</strong> 공통 풀 구현으로 최대 스레드 가동량 및 생성 주기 제어</li>
+                                <li>- <strong>Back-pressure 조절:</strong> LinkedBlockingQueue 도입으로 대기 작업량 관리 및 시스템 과부하 방지</li>
+                                <li>- <strong>객체 재사용:</strong> SimpleJdbcInsert 객체 캐싱을 통해 무분별한 객체 생성 방지 및 GC 부하 완화</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <p class="text-right font-bold text-blue-600 text-sm">Result: 리소스 관리 최적화로 안정적인 대용량 데이터 처리 보장</p>
+                </div>
             </section>
-        </div>
-        <footer class="mt-16 pt-8 border-t text-center text-slate-400 text-xs">
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 mt-12 border-t pt-12">
+                <section>
+                    <h2 class="section-header">Education</h2>
+                    <div class="space-y-4 text-sm">
+                        <div>
+                            <p class="font-bold">세종대학교</p>
+                            <p class="text-slate-600">데이터사이언스학과 졸업 (2024.03 - 2026.02) </p>
+                            <p class="text-slate-600">학점: 4.1/4.5</p>
+                        </div>
+                        <div>
+                            <p class="font-bold">한국산업기술대학교(KPU)</p>
+                            <p class="text-slate-600">컴퓨터공학부 중퇴 (2019.03 - 2023.08) </p>
+                        </div>
+                    </div>
+                </section>
+                <section>
+                    <h2 class="section-header">Awards & Blog</h2>
+                    <ul class="text-sm space-y-3">
+                        <li class="flex items-center gap-2">
+                            <span class="result-badge">우수상</span> 제4회 세종 U&I 페스티벌 캡스톤 디자인 경진대회 
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <span class="result-badge">대상</span> 2025 제19회 세종대학교 창의설계경진대회 
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <span class="result-badge">1등</span> 2024 인공지능데이터사이언스 융합학술제 
+                        </li>
+                        <li class="mt-4 italic text-blue-600 font-medium underline">
+                            <a href="https://khseon7.tistory.com/">기술 블로그: 논문 리뷰 및 실습 코드 정리 </a>
+                        </li>
+                    </ul>
+                </section>
+            </div>
+        </main>
+
+        <footer class="mt-8 pb-12 text-center text-slate-400 text-xs">
             © 2026 Hak Sun Kim. Built for Reliability and Stability. 
         </footer>
-    </div>
-
-</body>
+    </div> </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
